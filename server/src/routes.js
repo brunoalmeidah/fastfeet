@@ -8,6 +8,8 @@ import FileController from './app/controllers/FileController';
 import DeliveryController from './app/controllers/DeliveryController';
 import DeliverymanController from './app/controllers/DeliverymanController';
 import DeliverymanDeliveryController from './app/controllers/DeliverymanDeliveryController';
+import StartDeliveryController from './app/controllers/StartDeliveryController';
+import ConfirmDeliveryController from './app/controllers/ConfirmDeliveryController';
 
 const routes = new Router();
 
@@ -18,6 +20,12 @@ routes.post('/sessions', SessionController.store);
 routes.post('/files', upload.single('file'), FileController.store);
 
 routes.get('/deliveryman/:id/deliveries', DeliverymanDeliveryController.index);
+routes.put('/deliveries/:id/start', StartDeliveryController.update);
+routes.post(
+  '/deliveries/:id/confirm',
+  upload.single('file'),
+  ConfirmDeliveryController.store
+);
 
 routes.use(authMiddleware);
 
